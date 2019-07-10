@@ -47,7 +47,6 @@
 
 \documentclass[]{aiaa-tc}% insert '[draft]' option to show overfull boxes
 
-
 % Author-specific packages
 \usepackage[breaklinks=true]{hyperref}
 \hypersetup{colorlinks, citecolor=green, filecolor=black, linkcolor=blue, urlcolor=blue }
@@ -116,6 +115,8 @@ TODO: Partially from \href{https://docs.google.com/document/d/1K9YtM1mFtg6TUXoUP
 
 TODO: Primarily from \href{https://docs.google.com/document/d/1rU15AehftYQ6U1uiUhi44GROBVatPzkukOgTyjBBE_M/edit}{Literature Review}
 
+TODO: Remove this test citation\cite{wust_you_2017}.
+
 %%%%%%%%
 % SECTION %
 %%%%%%%%
@@ -123,22 +124,57 @@ TODO: Primarily from \href{https://docs.google.com/document/d/1rU15AehftYQ6U1uiU
 
 TODO: Primarily from \href{https://docs.google.com/document/d/16O1zB_lcD3egKadkRsFOPac2bynLB9gTbNVr9kFf3HA/edit}{Consensus Algorithm for an In-Space Economy} and \href{https://docs.google.com/document/d/1rzcag5pdtEJBVtK_JrG3c8htZkn-xGRbSOg5MPRNL3s/edit}{Algorithm Evaluation for Blockchains in Space}
 
+
+\section{Desired Blockchain Properties for Solar System Domains}
+
+TODO: Blockchain properties for the three considered domains:
+\begin{itemize}
+\item Cislunar and cisdeimotic space
+\item Interplanetary space
+\item Local autonomy in the outer Solar System
+\end{itemize}
+
+\subsection{Near Planets}
+
+TODO: Blockchain properties for operations with the orbits of an outer moon (e.g. cislunar and cisdeimotic space).
+
+
+\subsection{Interplanetary Space}
+
+TODO: Blockchain properties for interplanetary blockchain operations (e.g. Earth-Mars).
+
+
+\subsection{Local Autonomy in the Outer Solar System}
+
+TODO: Asynchronous protocol for lex mercatoria operations between spacecraft.
+
+
+\section{Consensus Near Planets}
+
+TODO: Details of a consensus algorithm for the cislunar  and cisdeimotic domains
+
+
 \section{Results}
 
 TODO
+
 
 \section{Conclusion}
 
 TODO
 
+
 \section*{Acknowledgments}
 
 TODO: Thank PegaSys, ConsenSys.
 
-\begin{thebibliography}{9}% maximum number of references (for label width)
- \bibitem{rebek:82bk}
- Rebek, A., {\it Fickle Rocks}, Fink Publishing, Chesapeake, 1982.
-\end{thebibliography}
+
+\bibliography{bibliography}
+\bibliographystyle{aiaa}
+%\begin{thebibliography}{9}% maximum number of references (for label width)
+% \bibitem{rebek:82bk}
+% Rebek, A., {\it Fickle Rocks}, Fink Publishing, Chesapeake, 1982.
+%\end{thebibliography}
 
 \end{document}
 
