@@ -53,7 +53,7 @@
 \hypersetup{colorlinks, citecolor=green, filecolor=black, linkcolor=blue, urlcolor=blue }
 % End author-specific packages
 
- \title{Blockchain Designs for In-Space Economies}
+ \title{Blockchain Properties for Near-Planetary, Interplanetary and Metaplanetary Space Domains}
 
 % \textbf{TODO}: Not ordered yet
  \author{
@@ -112,6 +112,8 @@ Finally, some economic opportunities are proposed for blockchain-based economic 
 %%%%%%%%
 \section{Introduction}
 
+\textbf{TODO}: Limit to ten pages.
+
 Blockchain technologies have demonstrated new and interesting ways to construct terrestrial economies, including the well-known public cryptocurrencies, but also as means to facilitate business-to-business (B2B) and business-to-consumer (B2C) transactions. This paper reports on a systemic review of extant blockchain properties that could be used to construct in-space economies.
 
 An in-space blockchain can serve as a natural basis for an in-space economy due to the ability of a blockchain to establish a trust environment of peers in consensus, and a facility to execute smart contracts when and if certain (perhaps difficult) activities are provably undertaken. Many, although certainly not all, of the smart contracts implemented to date execute economic agreements; we suggest that general trend is likely to continue.
@@ -129,13 +131,15 @@ This paper will review current implementations and proposals for blockchain uses
 \item Metaplanetary space
 \end{itemize}
 
-We will then evaluate the readiness of various distributed systems consensus algorithms to provide the properties necessary to build an in-space economy (Section \ref{sec:evaluation}) and explore some immediate economic opportunities for the application of blockchain technologies within cislunar space (Section \ref{sec:economicopps}). Finally, we will report our conclusions and suggest directions for future work.
+We will then evaluate the readiness of various distributed systems consensus algorithms to provide the properties necessary to build an in-space economy (Section \ref{sec:evaluation}). Finally, we will report our conclusions and suggest directions for future work.
 
 
 %%%%%%%%
 % SECTION %
 %%%%%%%%
 \section{Literature Review}\label{sec:litreview}
+
+\textbf{TODO}: Cull for this paper's specific case; remove a lot of the survey material.
 
 The application of blockchain technologies to space operations has recently attracted significant attention. Examples of companies currently providing some form of blockchain operations in Earth orbit include the SpaceChain Foundation\footnote{https://spacechain.com/} (two CubeSats in LEO operating nodes of a QTum blockchain), and Blockstream\footnote{https://blockstream.com/} (using five existing telecommunications satellites in GEO to broadcast the Bitcoin data stream). Several other for-profit and non-profit companies have announced plans to build organizations using blockchain technology or deploy systems including blockchain components to the LEO environment; for example, Space Decentral\footnote{https://spacedecentral.net/}, SpaceBridge Logistics\footnote{http://spacebridge.io/}, SpaceBit Blockchain for Space Alliance\footnote{https://spacebit.com/}, and Space Fund\footnote{https://spacefund.com/}
 
@@ -167,7 +171,7 @@ We therefore begin by ensuring that we match stated domain requirements to a the
 \item A centrally managed system is inappropriate or not practical.
 \end{itemize}
 
-W\"{u}st and Gervais continue by noting that a permissionless blockchain should be used when the above conditions are met and not all writers are known, and a permissioned blockchain should be used when the above conditions are met and all writers are known. It would seem based upon their analysis that blockchain matches the criteria for an in-space economy where the participants include multiple spacecraft controlled by multiple operators which may change over time. There is certainly no agreed arbiter of a future in-space economy at the time, and it would seem reasonable to question whether one could rapidly arise.
+W\"{u}st and Gervais continue by noting that a permissionless blockchain should be used when the above conditions are met and not all writers are known, and a permissioned blockchain should be used when the above conditions are met and all writers are known. It would seem based upon their analysis that blockchain matches the criteria for an in-space economy where the participants include multiple spacecraft controlled by multiple operators which may change over time. There is certainly no agreed arbiter of a future in-space economy at this time, and it would seem reasonable to question whether one could rapidly arise.
 
 Cybersecurity best practices from the field of computer science could be borrowed and extended to secure spacecraft communications. Relevant approaches used to control remote access to cloud computing resources and weapon systems include multi-factor authentication\cite{moussa_plurality-factor_2000} and multi-party authorisation\cite{carley_near_2009}. Either may be used to secure edge devices by using callbacks to secure external information.
 
@@ -189,11 +193,11 @@ Communication delays may be compounded by mission-specific requirements. For exa
 
 The farther from Earth one operates in space, the more propagation delays affect communications. Such delays are an important facet of space systems design (e.g. \cite{CCSDS_2007,yu_blockchain_2019}). Delays are a particularly important design criterion for blockchain consensus algorithms because timeouts are a nearly universal feature of such algorithms to determine when consensus cannot occur, and to denote error conditions.
 
-It is straightforward to determine propagation delays in radio communication if one knows the distances involved since radio waves travel at the speed of light. Propagation delays between Earth and Mars can vary between as little as three and a half minutes each way and as much as twenty four minutes each way depending on the relative positions of the two planets in their orbits. Delays to the outer edge of the main asteroid belt, known as the outer Kirkwood gap, can reach over thirty five minutes in each direction when a spacecraft at the outer Kirkwood gap is in conjunction with Earth. Additionally, available communications bandwidth is degraded as propagation losses increase. It is clear that consensus algorithms used on blockchains for space operations even within the inner Solar System (that narrow toroid defined by Earth, the Moon, Mars, and the main asteroid belt) will need to treat such lengthy propagation delays as a key design criterion.
+It is straightforward to determine propagation delays in radio communication if one knows the distances involved since radio waves travel at the speed of light. Propagation delays between Earth and Mars can vary between as little as three and a half minutes each way and as much as twenty four minutes each way depending on the relative positions of the two planets in their orbits. Delays to the outer edge of the main asteroid belt, known as the outer Kirkwood gap, can reach over thirty five minutes in each direction when a spacecraft at the outer Kirkwood gap is in conjunction with Earth. Additionally, available communications bandwidth is degraded as propagation losses increase. It is clear that consensus algorithms used on blockchains for space operations even within the inner Solar System (that narrow toroid defined by Earth, the Moon, Mars, and the main asteroid belt, as illustrated in Fig. \ref{f:fig1-toroid-of-interest}) will need to treat such lengthy propagation delays as a key design criterion.
 
 \begin{figure}[htb]% order of placement preference: here, top, bottom
  \includegraphics{figures/fig1-toroid-of-interest}
- \caption{A toroid of interest for a near-future in-space economy.}
+ \caption{A toroid of interest for a near-future in-space economy}
  \label{f:fig1-toroid-of-interest}
 \end{figure}
 
@@ -224,7 +228,7 @@ Several researchers have suggested the applicability of Ethereum as a possible b
 
 Changing the consensus algorithm of an Ethereum system creates a blockchain that is incompatible with Ethereum MainNet, at least under the current state of the art. Those taking this path (e.g. the Enterprise Ethereum Alliance and its members, and those researchers cited in the previous paragraph) are thus proposing ``private'' or ``enterprise'' Ethereum blockchains with consensus algorithms and perhaps other properties they deem appropriate for operations in their contexts.
 
-Three groups have suggested the Practical Byzantine Fault Tolerance (PBFT) algorithm\cite{castro_practical_1999} as a possible consensus algorithm for near-Earth orbital space operations\cite{yu_blockchain_2019,molesky_blockchain_2018,mital_blockchain_2019}. PBFT is a so-called proof of authority (PoA) algorithm, in that certain network nodes are given authority to act as proxies for many other nodes. One presumes those researchers meant to suggest PBFT as modified for use as a blockchain consensus algorithm, e.g. Istanbul Byzantine Fault Tolerance\cite{lin_istanbul_2017}, since PBFT was not itself defined with blockchains in mind. The PBFT family of consensus applications are an imperfect fit for orbital space operations given their reliance on time and connectivity as critical algorithmic components. Timeouts resulting from communications delays, occultation, radio interference, and other communication disruptions are all too common with spacecraft, but are used to determine error conditions in the PBFT family of consensus algorithms. PBFT algorithms would be an even less perfect fit for deep space operations where such communication disruptions are routinely expected. PBFT message sizes also tend to be large in practice, which work against the bandwidth, processing, and storage capabilities of most extant and proposed spacecraft.
+Three groups have suggested the Practical Byzantine Fault Tolerance (PBFT) algorithm\cite{castro_practical_1999} as a possible consensus algorithm for near-Earth orbital space operations\cite{yu_blockchain_2019,molesky_blockchain_2018,mital_blockchain_2019}. PBFT is a so-called proof of authority (PoA) algorithm, in that certain network nodes are given authority to act as proxies for many other nodes. One presumes those researchers meant to suggest PBFT as modified for use as a blockchain consensus algorithm, e.g. Istanbul Byzantine Fault Tolerance\cite{lin_istanbul_2017}, since PBFT was not itself defined with blockchains in mind. The PBFT family of consensus applications are an imperfect fit for orbital space operations given their reliance on time and connectivity as critical algorithmic components. Timeouts resulting from communications delays, occultation, radio interference, and other communication disruptions are all too common with spacecraft, but are used to determine error conditions in the PBFT family of consensus algorithms. PBFT algorithms would be an even less perfect fit for deep space operations where such communication disruptions are routinely expected. PBFT message sizes also tend to be large in practice, which work against the bandwidth, processing, and storage capabilities of most extant and proposed spacecraft. However, blockchains using PBFT algorithms located terrestrially may still be a reasonable component of integrated space systems.
 
 As noted by Beldavs, ``Central to the economy is money and rules for transacting business, as well as institutions that facilitate business activity such as banks.''\cite{beldavs_blockchains_2016} Blockchains can theoretically fulfill all of those criteria. The two largest, and earliest, public blockchains Bitcoin\cite{nakamoto_bitcoin_2008} and Ethereum\cite{buterin_ethereum_2013,wood_ethereum_2014} have both created usable currencies (in spite of their volatile prices), have defined rules for transacting business, and include smart contract functionality\cite{szabo_smart_1994} that may be used to facilitate business activity.
 
@@ -236,11 +240,41 @@ Israel has proposed that a lex mercatoria-like system similar to the economies t
 %%%%%%%%
 % SECTION %
 %%%%%%%%
-\section{Desired Blockchain Properties for Solar System Domains}\label{sec:desiredproperties}
+\section{Desired Blockchain Properties}\label{sec:desiredproperties}
 
 \textbf{TODO}: Add a brief review of blockchain consensus algorithm families and key differentiators in a space context. Introduce the acronyms (e.g. PoW, PoS, PoA) so they may be used later. Pull from ICSSC paper.
 
-\textbf{TODO}: Introduce the considerations required related to absolute time-knowledge.  Earth-wide time synchronization to sub-millisecond timing has become trivial owing to internet time-server and GPS signals, but these facilities are not currently available in deep space, and are challenged by non-realtime communications, and offline device clock-drift at the end-point.
+\textbf{TODO}: Introduce the considerations required related to absolute time-knowledge.  Earth-wide time synchronization to sub-millisecond timing has become trivial owing to internet time-server and GPS signals, but these facilities are not currently available in deep space, and are challenged by non-realtime communications, and offline device clock-drift at endpoints.
+
+Several logical blockchain-spacecraft relationships are possible, and each relationship implies a different overall systems architecture. Figure \ref{f:fig2-blockchain-arch} illustrates the four possible architectural relationships between a blockchain and a spacecraft. A spacecraft may act as a regular blockchain node (a), or as a mining node, sometimes also known as a writer or a valdidator (b). A spacecraft may simply read information from a blockchain (c) or request transactions be written to a blockchain (d). These possible relationships imply very different computation capacity and radio bandwidth onboard spacecraft, especially due to overall message traffic and average message size. We will suggest a blockchain-spacecraft relationship suitable for each of the target domains.
+
+\begin{figure}[htb]% order of placement preference: here, top, bottom
+ \centering{\includegraphics[width=400px,keepaspectratio]{figures/blockchain-arch}} 
+ \caption{Possible blockchain-spacecraft relationships}
+ \label{f:fig2-blockchain-arch}
+\end{figure}
+
+Table \ref{t:tab1-spacecraft-rels} compares the possible relationships between spacecraft and blockchains in terms of the amount of message traffic necessary to participate in each manner, and the degree to which onboard software would need to change to support blockchain operations of each type. By far the most compelling relationship between a spacecraft and a terrestrial blockchain is for the spacecraft to read information from the blockchain, as illustrated in Fig. \ref{f:fig2-blockchain-arch}(c) and compared in Table \ref{t:tab1-spacecraft-rels}. The costs for such read operations are minimal in terms of both message traffic and the degree of software changes. We therefore focused on the evaluation of technical solutions in which Earth-orbiting satellites would act as edge devices for terrestrial blockchains, with a read-only relationship.
+
+\begin{center}
+\begin{table}
+\caption{Comparison of possible blockchain-spacecraft relationships}
+ \label{t:tab1-spacecraft-rels}
+\begin{center}
+\begin{tabular}{lll}
+\hline
+Relationship    & Message traffic to/from satellite & Changes needed to onboard software \\
+\hline
+(a) Regular node      & High    & High      \\
+(b) Mining node       & High     & High      \\
+(c) Read-only       & Low     & Low-Medium      \\
+(d) Write request & Low      & Medium       \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+\end{center}
+
 
 \subsection{Near-Planetary Economies}
 
@@ -248,7 +282,30 @@ Israel has proposed that a lex mercatoria-like system similar to the economies t
 
 \subsubsection{Consensus Algorithm Selection for Near-Planetary Space}
 
-\textbf{TODO}: Primarily from \href{https://docs.google.com/document/d/16O1zB_lcD3egKadkRsFOPac2bynLB9gTbNVr9kFf3HA/edit}{Consensus Algorithm for an In-Space Economy} and \href{https://docs.google.com/document/d/1rzcag5pdtEJBVtK_JrG3c8htZkn-xGRbSOg5MPRNL3s/edit}{Algorithm Evaluation for Blockchains in Space}
+\textbf{TODO}: Primarily from the ICSSC 2019 conference paper.
+
+As noted in the literature review, three groups have suggested the Practical Byzantine Fault Tolerance (PBFT) algorithm as a possible consensus algorithm for near-Earth orbital space system operations. 
+
+\textbf{TODO}: Describe Table 2
+
+\begin{center}
+\begin{table}
+\caption{Proof of Authority Consensus Algorithms with Immediate Finality}
+ \label{t:tab2-poa-algos}
+\begin{center}
+\begin{tabular}{llll}
+\hline
+Algorithm    & Message traffic to reach consensus & Average message size & Resilience to lost messages \\
+\hline
+Honey Badger      & O($n^{2}$)    & O(b)   & No   \\
+Tendermint       & O($n^{2}$)     & O(b)  & No      \\
+DBFT       & O($n^{2}$)     & O(b)  & No      \\
+IBFT 2.0 & O($n^{2}$)      & O(b)  & Yes       \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+\end{center}
 
 
 \subsection{Interplanetary Economies}
@@ -282,28 +339,6 @@ Israel has proposed that a lex mercatoria-like system similar to the economies t
 %%%%%%%%
 % SECTION %
 %%%%%%%%
-\section{Some Immediate Economic Opportunities}\label{sec:economicopps}
-
-\textbf{TODO}: Existing blockchain technologies can be used to suggest at least some immediate applications in space systems operations.
-
-\subsection{Securing Spacecraft Command Channels}
-
-\textbf{TODO}: Recapitulate and perhaps extend ICSSC and SDLT papers.
-
-\subsection{Service Economies}
-
-\subsubsection{Tasking Spacecraft}
-
-\textbf{TODO}: We have software and infrastructure to implement Dan Mandl's proposal for an abstract tasking economy for Earth-observing spacecraft via smart contracts.
-
-\subsubsection{After-Market Economy Following Primary Mission Fulfillment}
-
-\textbf{TODO}: Xavier Lobao's idea for an after-market economy for spacecraft in (e.g.) geosynchronous graveyard orbits.
-
-
-%%%%%%%%
-% SECTION %
-%%%%%%%%
 \section{Conclusions}
 
 TODO
@@ -318,17 +353,16 @@ TODO:
 \begin{itemize}
 	\item{Immediate next steps}
 	\begin{itemize}
-		\item implementations of some of the above;
-		\item fieldings of the above;
-		\item more immediate applications of existing technology;
-		\item more generalised blockDAG approaches / note the concept of blockchain is changing rapidly;
+		\item Note the concept of blockchain is changing rapidly. More generalised blockDAG /transaction DAG approaches should be considered as they develop to determine applicability to space domains.
 	\end{itemize}
 	\item{Future Research}
 	\begin{itemize}
 		\item more formal proofs of consensus protocols;
 		\item more work on consensus for asynchronous networks and blockDAGs;
+		\item more work on consensus-less protocols;
 		\item more work on crosschain protocols;
-		\item greater understanding of economic theories of money especially possible relationships between government regulations/policies/laws/fiat currencies and decentralised cryptocurrencies/tokenised assets.
+		\item greater understanding of economic theories of money especially possible relationships between government regulations/policies/laws/fiat currencies and decentralised cryptocurrencies/tokenised assets;
+		\item more work on the intersection of this work with changes to space law.
 	\end{itemize}
 \end{itemize}
 
