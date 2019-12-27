@@ -65,14 +65,14 @@
     \thanks{School of Information Technology and Electrical Engineering, The University of Queensland, Brisbane, Australia}
     \thanks{AIAA Member}\\
   \and Peter Robinson\thanksibid{1} \thanksibid{2}
-  \and Brett Henderson\thanksibid{1}
+  \and Chris Lewicki%
+   \thanks{ConsenSys Space, Redmond, Washington, USA}
+   \thanksibid{3}
   \and Christopher Hare\thanksibid{1}
   \and Roberto Saltini\thanks{PegaSys, ConsenSys Australia, Sydney, New South Wales, Australia}
   \and Sandra Johnson\thanksibid{1}
   	\thanks{ARC Centre of Excellence for Mathematical and Statistical Frontiers, Queensland University of Technology, Brisbane, Australia}
-  \and Chris Lewicki%
-   \thanks{ConsenSys Space, Redmond, Washington, USA}
-   \thanksibid{3}
+  \and Brett Henderson\thanksibid{1}
  }
 
  % Data used by 'handcarry' option if invoked
@@ -92,31 +92,27 @@
 \maketitle
 
 \begin{abstract}
-Blockchain technologies have demonstrated new and interesting ways to construct terrestrial economies, including the well-known public cryptocurrencies, but also as means to facilitate business-to-business (B2B) and business-to-consumer (B2C) transactions. This paper reports on a systemic review of extant blockchain properties that could be used to construct in-space economies.
+Blockchain technologies have demonstrated new and interesting ways to construct terrestrial economies, including the well-known public cryptocurrencies, but also as means to facilitate business-to-business (B2B) and business-to-consumer (B2C) transactions. Some have recently proposed uses for blockchains in space. This paper reports on a systemic review of extant blockchain properties that could be used to construct future in-space economies.
 
 Three general economic domains are anticipated, each with their own communications limitations that drive the selection of applicable blockchain properties: Operations in elliptical orbits around planetary bodies where realtime communication is possible (e.g. within cislunar space around Earth or cisdeimotic space around Mars), operations across interplanetary space between spheres of influence where pseudo-realtime communication is possible (e.g. Earth-Mars or Earth-asteroids), and operations in metaplanetary space within the Solar system but beyond the limit of pseudo-realtime communication. Blockchain properties are suggested for each domain, with a focus on the selection of blockchain consensus algorithms. Evaluation is performed on the readiness of extant technologies to operate in each domain.
 \end{abstract}
 
 \section*{Nomenclature}
-
 \begin{tabbing}
   XXX \= \kill% this line sets tab stop
-  $n$ \> A blockchain node \\
-  $N_{n}$ \> The total number of participating blockchain nodes \\
-  $v$ \> A validator participating in a blockchain consensus protocol \\
-  $N_{v}$ \> The total number of participating validators \\
-  \textit{Subscript}\\
-  $i$ \> Variable number \\
+  $b$ \> Average block size, a function of the number of transactions per block \\
+  $n$ \> The number of blockchain nodes in a network \\
+ % $N_{n}$ \> The total number of participating blockchain nodes \\
+  %$v$ \> A validator participating in a blockchain consensus protocol \\
+  %$N_{v}$ \> The total number of participating validators \\
+  %\textit{Subscript}\\
+  %$i$ \> Variable number \\
  \end{tabbing}
 
 %%%%%%%%
 % SECTION % 
 %%%%%%%%
 \section{Introduction}
-
-\textbf{TODO}: Limit to ten pages.
-
-\textbf{TODO}: Check U.S. spelling usage throughout.
 
 Blockchain technologies have demonstrated new and interesting ways to construct terrestrial economies, including the well-known public cryptocurrencies, but also as means to facilitate business-to-business (B2B) and business-to-consumer (B2C) transactions. This paper reports on a systemic review of extant blockchain properties that could be used to construct in-space economies.
 
@@ -142,8 +138,6 @@ We will then evaluate the readiness of various distributed systems consensus alg
 % SECTION %
 %%%%%%%%
 \section{Literature Review}\label{sec:litreview}
-
-\textbf{TODO}: Cull for this paper's specific case; remove a lot of the survey material.
 
 The application of blockchain technologies to space operations has recently attracted significant attention. At least two companies currently provide some form of blockchain operations in Earth orbit: SpaceChain Foundation\footnote{https://spacechain.com/} has launched two CubeSats into LEO operating nodes of a QTum blockchain, and has deployed a multi-signature cryptocurrency wallet experiment via Nanoracks on the International Space Station. Blockstream\footnote{https://blockstream.com/} leases bandwidth on five existing GEO telecommunications satellites to broadcast the Bitcoin data stream.
 
@@ -224,7 +218,7 @@ Three groups have suggested the Practical Byzantine Fault Tolerance (PBFT) algor
 %%%%%%%%
 \section{Desired Blockchain Properties}\label{sec:desiredproperties}
 
-Several logical blockchain-spacecraft relationships are possible, and each relationship implies a different overall systems architecture. Figure \ref{f:fig2-blockchain-arch} illustrates the four possible architectural relationships between a blockchain and a spacecraft. A spacecraft may act as a regular blockchain node (a), or as a mining node, sometimes also known as a writer or a valdidator (b). A spacecraft may simply read information from a blockchain (c) or request transactions be written to a blockchain (d). These possible relationships imply very different computation capacity and radio bandwidth onboard spacecraft, especially due to overall message traffic and average message size. We will suggest a blockchain-spacecraft relationship suitable for each of the target domains.
+Several logical blockchain-spacecraft relationships are possible, and each relationship implies a different overall systems architecture. Figure \ref{f:fig2-blockchain-arch} illustrates four possible architectural relationships between a blockchain and a spacecraft. A spacecraft may act as a regular blockchain node (a), or as a mining node, sometimes also known as a writer or a valdidator (b). A spacecraft may simply read information from a blockchain (c) or request transactions be written to a blockchain (d). These possible relationships imply very different computation capacity and radio bandwidth onboard spacecraft, especially due to overall message traffic and average message size. We will suggest a blockchain-spacecraft relationship suitable for each of the target domains.
 
 \begin{figure}[htb]% order of placement preference: here, top, bottom
  \centering{\includegraphics[width=300px,keepaspectratio]{figures/blockchain-arch}} 
@@ -232,7 +226,7 @@ Several logical blockchain-spacecraft relationships are possible, and each relat
  \label{f:fig2-blockchain-arch}
 \end{figure}
 
-Table \ref{t:tab1-spacecraft-rels} compares the possible relationships between spacecraft and blockchains in terms of the amount of message traffic necessary to participate in each manner, and the degree to which onboard software would need to change to support blockchain operations of each type. By far the most compelling relationship between a spacecraft and a terrestrial blockchain is for the spacecraft to read information from the blockchain, as illustrated in Fig. \ref{f:fig2-blockchain-arch}(c) and compared in Table \ref{t:tab1-spacecraft-rels}. The costs for such read operations are minimal in terms of both message traffic and the degree of software changes. We therefore focused on the evaluation of technical solutions in which Earth-orbiting satellites would act as edge devices for terrestrial blockchains, with a read-only relationship.
+Table \ref{t:tab1-spacecraft-rels} compares the possible relationships between spacecraft and blockchains in terms of the relative amount of message traffic necessary to participate in each manner, and the relative degree to which onboard software would need to change to support blockchain operations of each type. By far the most compelling relationship between a spacecraft and a terrestrial blockchain is for the spacecraft to read information from the blockchain, as illustrated in Fig. \ref{f:fig2-blockchain-arch}(c) and compared in Table \ref{t:tab1-spacecraft-rels}. The costs for such read operations are minimal in terms of both message traffic and the degree of software changes. Most existing spacecraft do not have the computational capability to operate a blockchain node, although that restriction seems likely to ease as newer compute buses become space qualified.
 
 \begin{center}
 \begin{table}
@@ -256,7 +250,11 @@ Relationship    & Message traffic to/from satellite & Changes needed to onboard 
 
 \subsection{Near-Planetary Economies}
 
-\textbf{TODO}: Blockchain properties for operations within the orbits of an outer moon (e.g. cislunar and cisdeimotic space).
+Terrestrial distributed computing systems have the luxury of assuming an absolute knowledge of time at the sub-millisecond timing level due to timing signals being globally available via global navigation satellite systems (GNSS). Spacecraft in Earth orbit can similarly leverage such signals to develop and maintain and common sense of time, even when relativistic corrections must be made. Spacecraft in Earth orbit also naturally suffer less from extreme time delays or communication loss than those in deep space. 
+
+With a common notion of time and relatively short time delays, devices within cislunar space can effectively join terrestrial blockchains that use time as an intrinsic part of their consensus algorithms. Developing similar systems around Mars (say, within cisdeimotic space) will require similar infrastructure to that used around Earth. The one tradeoff that must be made is the light speed delays that do exist will limit block creation speed. That is probably acceptable as long as the number of space-to-space transactions is relatively small. 
+
+It is possible, and probably preferred, to treat most orbiting spacecraft as edge devices as opposed to expecting them to run blockchain node software. In such a scenario, spacecraft may read transactions from, or propose transactions to, a blockchain operated terrestrially. Blockchain nodes on spacecraft are anticipated to remain special-purpose devices deployed on few spacecraft for some time to come.
 
 \subsubsection{Consensus Algorithm Selection for Near-Planetary Space}
 
@@ -272,15 +270,11 @@ Finally, the type of network that a consensus protocol is designed for must be c
 
 We argue that the properties of immediate finality, BFT and the ability to operate on partial synchronous networks are very compelling features for space system operations because they allow for immediate reads of the information known to be on the chain, provide a high level of security and allow for patchy communication which is usually the case for space communication. The Enterprise Ethereum Alliance is considering adoption of immediate finality and BFT in their client standard\cite{eea-enhancedbft}.
 
-Naturally, spacecraft in Earth orbit suffer less from extreme time delays or communication loss than those in deep space. It is possible, and probably preferred, to treat orbiting spacecraft as edge devices instead of expecting them to run blockchain node software. In such a scenario, spacecraft may read transactions from, or propose transactions to, a blockchain operated terrestrially. The property of immediate finality is still anticipated to be a requirement for terrestrially operated blockchains supporting space systems operations.
-
-PoA protocols that provide immediate finality include Honey Badger\cite{Miller_Xia_Croman_Shi_Song_2016}, Tendermint\cite{Buchman_Kwon_Milosevic_2018}, DBFT (Democratic BFT)\cite{Crain_Gramoli_Larrea_Raynal_2018}, and IBFT 2.0\cite{saltini-ibft2}. Table \ref{t:tab2-poa-algos} summarizes the key properties of these protocols, and indicates our choice of IBFT 2.0 as most appropriate for the near-planetary domain. A more complete evaluation of these and other PoA protocols is available.\cite{hyland-wood-icssc2019}
-
-\textbf{TODO}: Describe Table 2
+PoA protocols that provide immediate finality and Byzantine fault tolerance include Honey Badger\cite{Miller_Xia_Croman_Shi_Song_2016}, Tendermint\cite{Buchman_Kwon_Milosevic_2018}, DBFT (Democratic BFT)\cite{Crain_Gramoli_Larrea_Raynal_2018}, and IBFT 2.0\cite{saltini-ibft2}. Table \ref{t:tab2-poa-algos} summarizes the key properties of these protocols, and indicates our choice of IBFT 2.0 as most appropriate for the near-planetary domain due to its ability to deal with lost messages. A more complete evaluation of these and other PoA protocols is available.\cite{hyland-wood-icssc2019}
 
 \begin{center}
 \begin{table}
-\caption{Proof of Authority Consensus Algorithms with Immediate Finality}
+\caption{Proof of Authority Consensus Algorithms with Immediate Finality and Byzantine Fault Tolerance}
  \label{t:tab2-poa-algos}
 \begin{center}
 \begin{tabular}{llll}
@@ -300,36 +294,39 @@ IBFT 2.0 & O($n^{2}$)      & O(b)  & Yes       \\
 
 \subsection{Interplanetary Economies}
 
-\textbf{TODO}: Blockchain properties for interplanetary crosschain operations (e.g. Earth-Mars).
+Deep space probes today typically act as edge nodes in a CFDP network. They check in directly with Earth as a routine part of their operations. These direct-to-Earth communications may one day yield to communication with other regional centers, such as a Martian outpost or asteroid mining operations, as part of a more diffuse interplanetary network.
 
-\textbf{TODO}: Cite crosschain work.
+We must anticipate that multiple hub nodes will evolve at areas of exceptional deep space activity, such as Lunar, Mars and asteroid operations, and eventually settlements at each and economic encounters between them. Such networks are likely to be complicated as some nodes implement the ability to relay or even foster direct spacecraft-to-spacecraft communication, thus operating more as routers than as edge nodes.
+
+Just as one can imagine a GNSS service around Mars or Earth's Moon, one can also imagine local blockchains that use those services to create economies on those bodies. A need would then naturally arise for swapping tokens or cryptocurrency between such near-planetary economies.
 
 \subsubsection{Consensus Algorithm Selection for Interplanetary Space}
 
-\textbf{TODO}: Primarily from \href{https://docs.google.com/document/d/16O1zB_lcD3egKadkRsFOPac2bynLB9gTbNVr9kFf3HA/edit}{Consensus Algorithm for an In-Space Economy} and \href{https://docs.google.com/document/d/1rzcag5pdtEJBVtK_JrG3c8htZkn-xGRbSOg5MPRNL3s/edit}{Algorithm Evaluation for Blockchains in Space}
+Two general approaches to an interplanetary blockchain are possible with current technologies: One could either develop a new blockchain specifically for interplanetary economic trades, or use so-called crosschain approaches to foster interaction between two planetary blockchains.
+
+Ideal properties for an interplanetary blockchain would include an asynchronous consensus algorithm due to the difficulties inherent in creating a robust and continuous available interplanetary communications network. Byzantine fault tolerance would again be a desirable property due to the economic incentives present for theft. It is well known by the FLP theorem\cite{fischer1982impossibility} that a deterministic system cannot simultaneously provide both asynchronicity and BFT. There is, however, at least one extant indeterministic system that matches both requirements: Hedera Hashgraph\cite{baird2018hedera}. A limitation of the Hedera Hashgraph consensus algorithm is the number of nodes in the network must be known (and agreed to) by all participants, which seems like a reasonable practical restriction for an interplanetary blockchain.
+
+Crosschain protocols may be used to transfer tokens or cryptocurrency between blockchains (e.g. \cite{thomas2015protocol,sporny-web-ledger-2019}), or to enable crosschain smart contract dependencies to be satisfied in atomic ways (\cite{robinson2019atomic}). Future development of such crosschain mechanisms is anticipated to allow for safe effective transfers of assets between blockchains and generalized computation across blockchains. Both types of actions would be necessary to build an interplanetary economy.
 
 
 \subsection{Local Autonomy in Metaplanetary Space}
 
-\textbf{TODO}: Too long to reach consensus when messages to Earth may require up to 35.5 mins each direction within our region of interest. Consensus formation involving Earth may require days. It would be advantageous to complete spacecraft-to-spacecraft transactions locally, and simply report the result of such pre-approved transactions to Earth. This is the $\mathit{lex\; mercatoria}$-like concept as proposed by Israel\cite{israel_space_2019} and previously described in general terms by some of us\cite{Hyland-Wood_COSPAR2019}.
+Perhaps we will one day deploy enough spacecraft that some will meet in deep space. Two spacecraft of different manufacture from different countries or companies may benefit from local, autonomous economic transactions. For example, a spacecraft needing fuel might negotiate for that resource from an automated mining rig on an asteroid, comet, or moon. The spacecraft might trade cryptocurrency, sensor readings, items of exploratory or scientific value, etc, for the fuel it needs. Blockchains give us models upon which to envision and perhaps build such micro-economies.
 
-\textbf{TODO}: Terrestrial distributed computing systems have the luxury of assuming an absolute knowledge of time at the sub-millisecond timing level due to timing signals being globally available via global navigation satellite systems (GNSS).  GNSS timing signals are not currently available in deep space, and are challenged by non-realtime communications, and offline device clock-drift at endpoints.
+Such spacecraft would, however, be quite unlikely to act as nodes participating in a remote blockchain. Even within our relatively small toroid of interest (that is, excluding operations near or on the Jovian or Saturnian moons or trojans), one-way message delays can exceed half an hour due to light speed limitations alone. Occultation, alignment, power restrictions or maintenance might cause that best-case scenario to be exceeded. Consensus formation, with its multiple message negotiations, could require days to reach agreement on a single transaction. PoA algorithms entail a relatively large amount of message traffic, which is an obvious problem for metaplanetary deployments. Surely some degree of local economic autonomy is to be preferred. It would be advantageous to complete spacecraft-to-spacecraft transactions locally, and simply report the result of such pre-approved transactions to Earth. This is the $\mathit{lex\; mercatoria}$-like concept as proposed by Israel\cite{israel_space_2019} and previously described in general terms by some of us\cite{Hyland-Wood_COSPAR2019}.
 
 \subsubsection{Consensus Algorithm Selection for Metaplanetary Space}
 
-\textbf{TODO}: Primarily from \href{https://docs.google.com/document/d/16O1zB_lcD3egKadkRsFOPac2bynLB9gTbNVr9kFf3HA/edit}{Consensus Algorithm for an In-Space Economy} and \href{https://docs.google.com/document/d/1rzcag5pdtEJBVtK_JrG3c8htZkn-xGRbSOg5MPRNL3s/edit}{Algorithm Evaluation for Blockchains in Space}
+Developing common knowledge of time between two spacecraft meeting in deep space is anticipated to be a significant issue. GNSS timing signals are not currently available in deep space, and are challenged by non-realtime communications, and offline device clock-drift at endpoints. It may make the most sense for such spacecraft to negotiate a common time as part of a communications protocol upon meeting.
 
-\textbf{TODO}: PoA algorithms entail a relatively large amount of message traffic, which is an obvious problem for metaplanetary deployments.
+We would need to develop at least the following to implement a metaplanetary economic scenario between unknown spacecraft:
 
-\textbf{TODO}: Asynchronous protocol for lex mercatoria operations between spacecraft. Possibly something similar to Hedera Hashgraph?
+\begin{itemize}
+\item a protocol for $\mathit{lex\; mercatoria}$-like machine-to-machine negotiation in deep space;
+\item a protocol for reporting $\mathit{lex\; mercatoria}$-like transactions to a blockchain of record.
+\end{itemize}
 
-
-%%%%%%%%
-% SECTION %
-%%%%%%%%
-\section{Evaluation}\label{sec:evaluation}
-
-\textbf{TODO}: Reporting on performance limitations would be good (e.g. message traffic as a function of consensus formation).
+Two current technology choices form a basis for progress. Firstly, perceived need for privacy in corporate transactions has led to the development of blockchain systems in which all participants are strongly identified via public key cryptography. Remote off-chain trades may be agreed between parties locally, and recorded to a blockchain of record if both parties report the same transaction. Secondly, a multiple signature scheme, such as BLS Threshold Signatures\cite{boldyreva2003threshold} may be used to construct a transaction record, thus ensuring neither party can cheat during reporting \textit{post facto}. Up-front message traffic could therefore be minimized or even avoided.
 
 
 %%%%%%%%
@@ -337,7 +334,13 @@ IBFT 2.0 & O($n^{2}$)      & O(b)  & Yes       \\
 %%%%%%%%
 \section{Conclusions}
 
-TODO
+We conducted a systemic review of extant blockchain properties that could be used to construct future in-space economies in three domains: Near-planetary, interplanetary and metaplanetary.
+
+We suggested two ways blockchains could be immediately deployed within cislunar space. One way is to modify the software of extant spacecraft to read from or propose writes to terrestrial blockchains. Another is to deploy specialist hardware capable of supporting full or partial blockchain node software. We proposed IBFT 2.0 as the consensus protocol most suited for low-transaction rate usage in near-planetary space.
+
+We noted that access to precise timing signals and assumptions regarding communications reliability were critical components of most existing consensus protocols. The lack of either in deep space environments constituted key limiting factors in the interplanetary and metaplanetary scenarios.
+
+Blockchain properties were suggested for each domain, with a focus on the selection of blockchain consensus algorithms. We showed that existing blockchain technologies are capable of immediate use within cislunar space, proposed two general approaches for building interplanetary economies and suggested concrete next steps to develop technologies suitable for the formation of economies in deep space.
 
 
 %%%%%%%%
@@ -345,22 +348,11 @@ TODO
 %%%%%%%%
 \section{Further Work}
 
-TODO:
-\begin{itemize}
-	\item{Immediate next steps}
-	\begin{itemize}
-		\item Note the concept of blockchain is changing rapidly. More generalised blockDAG /transaction DAG approaches should be considered as they develop to determine applicability to space domains.
-	\end{itemize}
-	\item{Future Research}
-	\begin{itemize}
-		\item more formal proofs of consensus protocols;
-		\item more work on consensus for asynchronous networks and blockDAGs;
-		\item more work on consensus-less protocols;
-		\item more work on crosschain protocols;
-		\item greater understanding of economic theories of money especially possible relationships between government regulations/policies/laws/fiat currencies and decentralised cryptocurrencies/tokenised assets;
-		\item more work on the intersection of this work with changes to space law.
-	\end{itemize}
-\end{itemize}
+We would need to develop message-oriented crosschain protocols for interplanetary use suitable to the blockchains actually proposed for use, possibly using CFDP as a foundational protocol. The metaplanetary scenario would require the development of  a protocol for $\mathit{lex\; mercatoria}$-like machine-to-machine negotiation in deep space and a protocol for reporting $\mathit{lex\; mercatoria}$-like transactions to a blockchain of record (presumably one located on a planet or moon). We would hopefully formally analyze all of those protocols for correctness, safety and liveness.
+
+This paper represents our current best understanding of how to use distributed computing systems to build economies in space, but the field is moving extremely rapidly. We do not even have a common conception of what a blockchain is, much less a proper theoretical framework to evaluate the many different approaches to blockchains currently being built. The early blockchains sacrificed the concept of privacy for forms of anonymity. Perceived needs for increased privacy is driving researchers to create blockchains where only parties to a transaction may see the details. Thus, we expect to see distributed systems researchers continue to develop, evaluate and prove the correctness of more generalized blockchain-like systems based upon directed acyclic graph (DAG) data structures. Although none of the current transaction DAGs match all space requirements, new DAG approaches should be considered as they appear to determine applicability to space domains.
+
+A similar problem is our poor understanding of consensus algorithms. Very few consensus algorithms have been formally proven to be correct. We thus require more formal proofs of consensus algorithms. Space applications would also benefit from development of new consensus algorithms with substantially reduced message-passing requirements. New work on cross-chain protocols would also be helpful in that they would allow more ways to cooperate across vendors, technology choices and domains. Finally, emerging space law may enable (or limit) the kinds of technology choices we might be able to field.
 
 
 %%%%%%%%
