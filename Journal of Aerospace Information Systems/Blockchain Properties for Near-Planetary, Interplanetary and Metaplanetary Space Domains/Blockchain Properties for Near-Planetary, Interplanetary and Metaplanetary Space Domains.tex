@@ -1,92 +1,41 @@
 % Blockchain Designs for In-Space Economies
 %
-% \textbf{TODO}: Check for more up-to-date AIAA journal template, and for any specific ARC JIS template.
-% This paper uses the AIAA Basic template, which seems to suit our needs.
-%
-% `template_basic.tex' - A bare-bones example of using the AIAA class.
-%                        For a more advanced usage, see `template_advanced.tex'.
-%
-% Typical processing for PostScript (PS) output:
-%
-%  latex template_basic
-%  latex template_basic   (repeat as needed to resolve references)
-%
-%  xdvi template_basic    (onscreen draft display)
-%  dvips template_basic   (postscript)
-%  gv template_basic.ps   (onscreen display)
-%  lpr template_basic.ps  (hardcopy)
-%
-% With the above, only Encapsulated PostScript (EPS) images can be used.
-%
-% Typical processing for Portable Document Format (PDF) output:
-%
-%  pdflatex template_basic
-%  pdflatex template_basic      (repeat as needed to resolve references)
-%
-%  acroread template_basic.pdf  (onscreen display)
-%
-% If you have EPS figures, you will need to use the epstopdf script
-% to convert them to PDF because PDF is a limmited subset of EPS.
-% pdflatex accepts a variety of other image formats such as JPG, TIF,
-% PNG, and so forth -- check the documentation for your version.
-%
-% If you do *not* specify suffixes when using the graphicx package's
-% \includegraphics command, latex and pdflatex will automatically select
-% the appropriate figure format from those available.  This allows you
-% to produce PS and PDF output from the same LaTeX source file.
-%
-% To generate a large format (e.g., 11"x17") PostScript copy for editing
-% purposes, use
-%
-%  dvips -x 1467 -O -0.65in,0.85in -t tabloid template_basic
-%
-% For further details and support, read the Users Manual, aiaa.pdf.
-%
-% This software is released under the terms of the LaTeX Project Public
-% License.  Copyright (C) 2004 by Bil Kleb, Bill Wood, and Erich Knausenberger.
+\documentclass[journal ]{new-aiaa}
+%\documentclass[conf]{new-aiaa} for conference papers
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
 
-
-\documentclass[]{aiaa-tc}% insert '[draft]' option to show overfull boxes
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage[version=4]{mhchem}
+\usepackage{siunitx}
+\usepackage{longtable,tabularx}
+\setlength\LTleft{0pt} 
 
 % Author-specific packages
-\usepackage[breaklinks=true]{hyperref}
-\hypersetup{colorlinks, citecolor=green, filecolor=black, linkcolor=blue, urlcolor=blue }
+%% NB: MOST NOT ALLOWED BY AIAA
+%\usepackage[breaklinks=true]{hyperref}
+%\hypersetup{colorlinks, citecolor=green, filecolor=black, linkcolor=blue, urlcolor=blue }
 \usepackage{mathpazo}
 \newcommand{\rpm}{\raisebox{.2ex}{$\scriptstyle\pm$}} % for +- character
-\usepackage[shortlabels]{enumitem} % for lettered lists
-\usepackage[colorinlistoftodos]{todonotes} % TODOs
+%\usepackage[shortlabels]{enumitem} % for lettered lists
+%\usepackage[colorinlistoftodos]{todonotes} % TODOs
 % End author-specific packages
 
  \title{Blockchain Properties for Near-Planetary, Interplanetary and Metaplanetary Space Domains}
 
-% \textbf{TODO}: Not ordered yet
- \author{
-  David Hyland-Wood%
-    \thanks{PegaSys, ConsenSys Australia, Brisbane, Queensland, Australia}
-    \thanks{School of Information Technology and Electrical Engineering, The University of Queensland, Brisbane, Australia}
-    \thanks{AIAA Member}\\
-  \and Peter Robinson\thanksibid{1} \thanksibid{2}
-  \and Chris Lewicki%
-   \thanks{ConsenSys Space, Redmond, Washington, USA}
-   \thanksibid{3}
-  \and Christopher Hare\thanksibid{1}
-  \and Roberto Saltini\thanks{PegaSys, ConsenSys Australia, Sydney, New South Wales, Australia}
-  \and Sandra Johnson\thanksibid{1}
-  	\thanks{ARC Centre of Excellence for Mathematical and Statistical Frontiers, Queensland University of Technology, Brisbane, Australia}
-  \and Brett Henderson\thanksibid{1}
- }
+ \author{David Hyland-Wood\footnote{Adjunct Associate Professor, School of Information Technology and Electrical Engineering, The University of Queensland, AIAA Member.}
+ and Peter Robinson\footnote{Researcher, School of Information Technology and Electrical Engineering, The University of Queensland.}
+and Sandra Johnson\footnote{Researcher, ARC Centre of Excellence for Mathematical and Statistical Frontiers, Queensland University of Technology.}
+and Christopher Hare\footnote{Blockchain Protocol Engineer, PegaSys.}
+and Brett Henderson\footnote{Blockchain Protocol Engineer \& ScrumMaster, PegaSys.}} %TODO: Fix duplicate title??
+\affil{PegaSys, ConsenSys AG, Brisbane, QLD, 4000, Australia}
 
- % Data used by 'handcarry' option if invoked
- \AIAApapernumber{YEAR-NUMBER}
- \AIAAconference{Conference Name, Date, and Location}
- \AIAAcopyright{\AIAAcopyrightD{YEAR}}
+\author{Chris Lewicki\footnote{Business Unit Lead, ConsenSys Space, AIAA Member.}}
+\affil{ConsenSys Space, ConsenSys AG, Redmond, WA, 98052, USA}
 
- % Define commands to assure consistent treatment throughout document
- \newcommand{\eqnref}[1]{(\ref{#1})}
- \newcommand{\class}[1]{\texttt{#1}}
- \newcommand{\package}[1]{\texttt{#1}}
- \newcommand{\file}[1]{\texttt{#1}}
- \newcommand{\BibTeX}{\textsc{Bib}\TeX}
+\author{Roberto Saltini\footnote{Researcher, PegaSys.}}
+\affil{PegaSys, ConsenSys AG, Sydney, NSW, 2000, Australia}
 
 \begin{document}
 
@@ -124,7 +73,7 @@ Spacecraft face challenges not present with terrestrial computing systems. Due t
 Three general economic domains are anticipated, each with their own communications limitations that drive the selection of applicable blockchain properties: Operations in orbits around planetary bodies where realtime communication is possible (e.g. cislunar space within the orbit of Earth's moon or ``cisdeimotic'' space within the orbit of Mars' moon Deimos), operations across interplanetary space between spheres of influence where pseudo-realtime communication is possible (e.g. Earth-Mars or Earth-asteroids), and operations in metaplanetary space within the Solar system but beyond the limit of pseudo-realtime communication. Blockchain properties are suggested for each domain, with a focus on the selection of blockchain consensus algorithms. Evaluation is performed on the readiness of extant technologies to operate in each domain.
 
 This paper will review current implementations and proposals for blockchain uses in space (Section \ref{sec:litreview}). We will then consider desirable blockchain properties for the three domains (Section \ref{sec:desiredproperties}): 
-\begin{enumerate}[(a)] % list of style (a), etc.
+\begin{enumerate} % list of style (a), etc.
 \item Near-planetary space
 \item Interplanetary space
 \item Metaplanetary space
@@ -187,8 +136,8 @@ It is straightforward to determine propagation delays in radio communication if 
 to
  as much as twenty four minutes each way depending on the relative positions of the two planets in their orbits. Delays to the outer edge of the main asteroid belt, known as the outer Kirkwood gap, can reach over thirty five minutes in each direction when a spacecraft at the outer Kirkwood gap is in conjunction with Earth. Additionally, available communications bandwidth is degraded as propagation losses increase. It is clear that consensus algorithms used on blockchains for space operations even within the inner Solar System (that narrow toroid defined by Earth, the Moon, Mars, and the main asteroid belt, as illustrated in Fig. \ref{f:fig1-toroid-of-interest}) will need to treat such lengthy propagation delays as a key design criterion.
 
-\begin{figure}[htb]% order of placement preference: here, top, bottom
- \includegraphics{figures/fig1-toroid-of-interest}
+\begin{figure}[htb!]% order of placement preference: here, top, bottom
+ \centering{\includegraphics[width=450px,keepaspectratio]{figures/fig1-toroid-of-interest}}
  \caption{A toroid of interest for a near-future in-space economy}
  \label{f:fig1-toroid-of-interest}
 \end{figure}
@@ -226,7 +175,7 @@ Several logical blockchain-spacecraft relationships are possible, and each relat
 validator
  (b). A spacecraft may simply read information from a blockchain (c) or request transactions be written to a blockchain (d). These possible relationships imply very different computation capacity and radio bandwidth onboard spacecraft, especially due to overall message traffic and average message size. We will suggest a blockchain-spacecraft relationship suitable for each of the target domains.
 
-\begin{figure}[htb]% order of placement preference: here, top, bottom
+\begin{figure}[htb!]% order of placement preference: here, top, bottom
  \centering{\includegraphics[width=300px,keepaspectratio]{figures/blockchain-arch}} 
  \caption{Possible blockchain-spacecraft relationships}
  \label{f:fig2-blockchain-arch}
@@ -234,11 +183,10 @@ validator
 
 Table \ref{t:tab1-spacecraft-rels} compares the possible relationships between spacecraft and blockchains in terms of the relative amount of message traffic necessary to participate in each manner, and the relative degree to which onboard software would need to change to support blockchain operations of each type. By far the most compelling relationship between a spacecraft and a terrestrial blockchain is for the spacecraft to read information from the blockchain, as illustrated in Fig. \ref{f:fig2-blockchain-arch}(c) and compared in Table \ref{t:tab1-spacecraft-rels}. The costs for such read operations are minimal in terms of both message traffic and the degree of software changes. Most existing spacecraft do not have the computational capability to operate a blockchain node, although that restriction seems likely to ease as newer compute buses become space qualified.
 
-\begin{center}
-\begin{table}
+\begin{table}[hbt!]
 \caption{Comparison of possible blockchain-spacecraft relationships}
  \label{t:tab1-spacecraft-rels}
-\begin{center}
+\centering
 \begin{tabular}{lll}
 \hline
 Relationship    & Message traffic to/from satellite & Changes needed to onboard software \\
@@ -249,9 +197,7 @@ Relationship    & Message traffic to/from satellite & Changes needed to onboard 
 (d) Write request & Low      & Medium       \\
 \hline
 \end{tabular}
-\end{center}
 \end{table}
-\end{center}
 
 
 \subsection{Near-Planetary Economies}
@@ -281,11 +227,10 @@ We argue that the properties of immediate finality, BFT and the ability to opera
 
 PoA protocols that provide immediate finality and Byzantine fault tolerance include Honey Badger\cite{Miller_Xia_Croman_Shi_Song_2016}, Tendermint\cite{Buchman_Kwon_Milosevic_2018}, DBFT (Democratic BFT)\cite{Crain_Gramoli_Larrea_Raynal_2018}, and IBFT 2.0\cite{saltini-ibft2}. Table \ref{t:tab2-poa-algos} summarizes the key properties of these protocols, and indicates our choice of IBFT 2.0 as most appropriate for the near-planetary domain due to its ability to deal with lost messages. A more complete evaluation of these and other PoA protocols is available.\cite{hyland-wood-icssc2019}
 
-\begin{center}
 \begin{table}
 \caption{Proof of Authority Consensus Algorithms with Immediate Finality and Byzantine Fault Tolerance}
  \label{t:tab2-poa-algos}
-\begin{center}
+\centering
 \begin{tabular}{llll}
 \hline
 Algorithm    & Message traffic to reach consensus & Average message size & Resilience to lost messages \\
@@ -296,9 +241,7 @@ DBFT       & O($n^{2}$)     & O(b)  & No      \\
 IBFT 2.0 & O($n^{2}$)      & O(b)  & Yes       \\
 \hline
 \end{tabular}
-\end{center}
 \end{table}
-\end{center}
 
 
 \subsection{Interplanetary Economies}
@@ -341,9 +284,7 @@ Two current technology choices form a basis for progress. Firstly, perceived nee
 %%%%%%%%
 % SECTION %
 %%%%%%%%
-\section{Conclusions}
-
-We conducted a systemic review of extant blockchain properties that could be used to construct future in-space economies in three domains: Near-planetary, interplanetary and metaplanetary.
+\section{Conclusion}
 
 We suggested two ways blockchains could be immediately deployed within cislunar space. One way is to modify the software of extant spacecraft to read from or propose writes to terrestrial blockchains. Another is to deploy specialist hardware capable of supporting full or partial blockchain node software. We proposed IBFT 2.0 as the consensus protocol most suited for low-transaction rate usage in near-planetary space.
 
@@ -367,13 +308,12 @@ A similar problem is our poor understanding of consensus algorithms. Very few co
 %%%%%%%%
 % SECTION %
 %%%%%%%%
-\section*{Acknowledgments}
+\section*{Funding Sources}
 
-The authors gratefully acknowledge ConsenSys AG for supporting this research, especially its ConsenSys Space and PegaSys divisions.
+The authors gratefully acknowledge ConsenSys AG for supporting this research, especially its ConsenSys Space and PegaSys business units.
 
 
 \bibliography{blockchainsinspace}
-\bibliographystyle{aiaa}
 %\begin{thebibliography}{9}% maximum number of references (for label width)
 % \bibitem{rebek:82bk}
 % Rebek, A., {\it Fickle Rocks}, Fink Publishing, Chesapeake, 1982.
