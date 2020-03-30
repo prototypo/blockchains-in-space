@@ -20,6 +20,9 @@
 \newcommand{\rpm}{\raisebox{.2ex}{$\scriptstyle\pm$}} % for +- character
 %\usepackage[shortlabels]{enumitem} % for lettered lists
 %\usepackage[colorinlistoftodos]{todonotes} % TODOs
+\hyphenation{block-chain}
+\hyphenation{block-chains}
+\hyphenation{econ-o-mies}
 % End author-specific packages 
 
  \title{Blockchain Properties for Near-Planetary, Interplanetary and Metaplanetary Space Domains}
@@ -42,7 +45,7 @@ and Brett Henderson\footnote{Blockchain Protocol Engineer \& ScrumMaster, PegaSy
 \maketitle
 
 \begin{abstract}
-Blockchain technologies have demonstrated new and interesting ways to construct terrestrial economies, including the well-known public cryptocurrencies, but also as means to facilitate business-to-business (B2B) and business-to-consumer (B2C) transactions. Some have recently proposed uses for blockchains in space. This paper suggests extant blockchain properties that could be used to construct future in-space economies.
+Blockchain technologies have demonstrated new and interesting ways to construct terrestrial economies, including the well-known public cryptocurrencies, but also as means to facilitate business-to-business (B2B) and business-to-consumer (B2C) transactions. Some have recently proposed uses for blockchains in space. This paper identifies desirable blockchain properties that could be used to construct future in-space economies.
 
 Three general economic domains are anticipated, each with their own communications limitations that drive the selection of applicable blockchain properties: Operations in orbits around planetary bodies where realtime communication is possible (e.g. within cislunar space around Earth or cisdeimotic space around Mars), operations across interplanetary space between spheres of influence where pseudo-realtime communication is possible (e.g. Earth-Mars or Earth-asteroids), and operations in metaplanetary space within the Solar system but beyond the limit of pseudo-realtime communication. Blockchain properties are suggested for each domain, with a focus on the selection of blockchain consensus algorithms. Evaluation is performed on the readiness of extant technologies to operate in each domain.
 \end{abstract}
@@ -64,9 +67,9 @@ Three general economic domains are anticipated, each with their own communicatio
 %%%%%%%%
 \section{Introduction}
 
-Blockchain technologies have demonstrated new and interesting ways to construct terrestrial economies, including the well-known public cryptocurrencies, but also as means to facilitate business-to-business (B2B) and business-to-consumer (B2C) transactions. This paper suggests extant blockchain properties that could be used to construct in-space economies.
+Blockchain technologies have demonstrated new and interesting ways to construct terrestrial economies, including the well-known public cryptocurrencies, but also as means to facilitate business-to-business (B2B) and business-to-consumer (B2C) transactions. This paper identifies desirable blockchain properties that could be used to construct in-space economies.
 
-An in-space blockchain can serve as a natural basis for an in-space economy due to the ability of a blockchain to establish a trust environment of peers in consensus, and a facility to execute smart contracts when and if certain (perhaps difficult) activities are provably undertaken. Many, although certainly not all, of the smart contracts implemented to date execute economic agreements; we suggest that general trend is likely to continue into activities in space. It is therefore not too early to think about the properties of an in-space blockchain.
+An in-space blockchain can serve as a natural basis for an in-space economy due to the ability of a blockchain to establish a trust environment of peers in consensus, and a facility to execute smart contracts when and if certain (perhaps difficult) activities are provably undertaken. Many, although certainly not all, of the smart contracts implemented to date execute economic agreements; we suggest that general trend is likely to continue into activities in space. It is therefore not too early to think about the properties required by an in-space blockchain.
 
 Spacecraft face challenges not present with terrestrial computing systems. Due to launch costs, limitations in means of making or carrying electrical power, and the challenges of dissipating heat in a vacuum, available power and computation capabilities are much more limited on spacecraft than they are terrestrially. Moreover, computation, non-volatile and volatile memory options are constrained by the limits imparted on microelectronics in order to operate reliably in hard radiation environments.  Spacecraft have to cope with great distances leading to significant light speed delays in communication, and occasional inability to get a line-of-sight to communications nodes in the same network.  Such distances create challenges in data integrity verification, communications acknowledgements, store-and-forward and multi-path considerations, compounded by free-space path losses resulting in bandwidth constraints. This swathe of challenges introduced by spacecraft necessitates the invention of new kinds of blockchains to serve those needs.
 
@@ -104,11 +107,13 @@ Researchers in several countries have proposed future uses of blockchains in spa
 
 Researchers with government or military connections in China, Russia and the United States are actively investigating uses of blockchains for access security and data integrity of Earth-orbiting satellites. Published Chinese military interest seems to be focused on preventing ``cyber \& physical attacks'' against space assets\cite{yu_blockchain_2019}, and to allow ``multiple departments to participate in the maintenance and update of equipment status''\cite{yu_situational_2019}. The Roscosmos State Corporation for Space Activities in Russia is developing a ``digital platform for control spacecrafts'' [sic] and for ``use of ground stations'' focused on the ``Roskosmos orbital group'' of satellites\cite{skobelev_towards_2018}. It has been suggested that ``the US military has taken a fancy to the anonymity of blockchain in recording transactions, and has begun to expand to the field of intelligence gathering to achieve covert targeted payments for incentive personnel.'' [sic]\cite{yu_situational_2019}.
 
+\subsection{Applicability of Blockchain Technology}
+
 The space-based communications security use cases above bear resemblance to similar terrestrial use cases for communication security of air traffic control systems\cite{reisman_air_2019} and bear significant resemblance to issues encountered in distributed Internet of Things networks (e.g. \cite{dorri2017lsb, dorri2019mof}).
 
 Mandl, at NASA Goddard Space Flight Center, has proposed using smart contracts on blockchains to create a ``Remote Sensing as a Service'' offering\cite{mandl_bitcoin_2017}. In Mandl's conception, a single Earth observation requirement could be obtained as the conjunction of multiple platforms conducting multiple observations under a variety of conditions until a desired goal is achieved. Mandl's conception naturally leads to competition between spacecraft that may be simultaneously capable of satisfying all or part of a stated requirement. This idea will be further developed in Section \ref{sec:desiredproperties}.
 
-It is reasonable to ask whether a blockchain is a legitimate solution for these use cases. We therefore begin by ensuring that we match stated domain requirements to a theoretical framework for blockchain applicability. Several researchers (e.g. \cite{wust_gervais_2017,xu_design_2019}) have proposed decision trees to help determine the applicability of blockchains to particular domains. We will follow W\"{u}st and Gervais\cite{wust_gervais_2017} to suggest blockchain properties that could be used to satisfy the goals for some space-related use cases. W\"{u}st and Gervais determined blockchains are best used when all of the following criteria are met: Storage of state is required, the system has multiple writers, a trusted third party is not appropriate or not available, or a controlling third party's network cannot be trusted due to potential intrusion, issues of slow latency or low throughput are acceptable, and a centrally managed system is inappropriate or not practical.
+The first question that we ought to answer is whether a blockchain is a legitimate solution for these use cases. We therefore begin by ensuring that we match stated domain requirements to a theoretical framework for blockchain applicability. Several researchers (e.g. \cite{wust_gervais_2017,xu_design_2019}) have proposed decision trees to help determine the applicability of blockchains to particular domains. We will follow W\"{u}st and Gervais\cite{wust_gervais_2017} to suggest blockchain properties that could be used to satisfy the goals for some space-related use cases. W\"{u}st and Gervais determined blockchains are best used when all of the following criteria are met: Storage of state is required, the system has multiple writers, a trusted third party is not appropriate or not available, or a controlling third party's network cannot be trusted due to potential intrusion, issues of slow latency or low throughput are acceptable, and a centrally managed system is inappropriate or not practical.
 
 W\"{u}st and Gervais continue by noting that a permissionless blockchain should be used when the above conditions are met and not all writers are known, and a permissioned blockchain should be used when the above conditions are met and all writers are known. Using their guidelines, we find that an in-space economy where the participants include multiple spacecraft controlled by multiple operators which may change over time, matches the criteria for a blockchain. There is certainly no agreed arbiter of a future in-space economy at this time, and it would seem reasonable to question whether one could arise due to the currently rapid decentralization of spacecraft ownership.
 
@@ -122,7 +127,10 @@ Beldavs\cite{beldavs_blockchains_2016} further suggests that the establishment o
 
 Israel has proposed that a $\mathit{lex\; mercatoria}$-like system may form in space, similar to the economies that developed between companies operating away from their home countries during the Age of Exploration\cite{israel_space_2019}. Blockchains, with their decadal history of performing $\mathit{lex\; mercatoria}$-like operations, seem to be a reasonable fit for the likely conditions.
 
-The space environment imposes limitations and presents challenges that are quite different from the air-conditioned, high-bandwidth terrestrial environments where early blockchain technologies were developed.
+\subsection{Challenges with Deploying Blockchains in Space}
+
+The second question that we ought to answer is whether blockchains can actually be deployed in space.
+This because the space environment imposes limitations and presents challenges that are quite different from the air-conditioned, high-bandwidth terrestrial environments where early blockchain technologies were developed.
 
 Properties of the near-Earth orbital space environment that impose additional limitations on blockchain technologies include:
 \begin{itemize}
@@ -319,6 +327,12 @@ Two current technology choices form a basis for progress. Firstly, perceived nee
 % SECTION %
 %%%%%%%%
 \section{Conclusion}
+
+Several researchers have proposed and identified use cases for blockchains in space. In this paper, we first revisited some these use cases through the lens of the theoretical framework proposed by  W\"{u}st and Gervais\cite{wust_gervais_2017} to confirm that blockchain technologies are an appropriate technical solution for those use cases.
+
+Second, we determined desirable blockchain properties to construct future in-space economies in three domains: Near-planetary, interplanetary and metaplanetary.
+
+We identified two ways blockchains could be immediately deployed within cislunar space. One way is to modify the software of extant spacecraft to read from or propose writes to terrestrial blockchains. Another is to deploy specialist hardware capable of supporting full or partial blockchain node software. We proposed IBFT 2.0 as the consensus protocol most suited for low-transaction rate usage in near-planetary space.
 
 We further developed Mandl's conception of ``Remote Sensing as a Service'' by noting that it naturally extends into an economy based on competition. We then proposed the idea of a competitive in-space economy in three distinct space domains, and fit extant blockchain technologies to each domain as implementing strategies for such economic activities. Blockchain properties were suggested for each domain, with a focus on the selection of blockchain consensus algorithms. We showed that existing blockchain technologies are capable of immediate use within cislunar space. We then proposed two consensus algorithms (Hedera Hashgraph and Honey Badger) and two general approaches for building interplanetary economies. Finally, we suggested general steps necessary for development of technologies suitable for the formation of economies in deep space.
 
